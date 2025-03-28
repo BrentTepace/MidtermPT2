@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Library List</title>
+
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .librarylist {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+            border: 3px solid #000;
+            background: #fff;
+            position: relative;
+            width: 300px;
+        }
+
+        .librarylist div {
+            font-size: 12px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .librarylist img {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border: 3px solid black;
+        }
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial;
+            color: #000;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let xml = document.getElementById("xmldata");
+            let users = xml.getElementsByTagName("User");
+            let output = "<div class='container'>";  
+
+            for (let k = 0; k < users.length; k++) {
+                let userData = users[k].childNodes;
+                let imgSrc = "";
+                let userInfo = "<div class='librarylist'>";
+
+                for (let i = 0; i < userData.length; i++) {
+                    let node = userData[i];
+                    if (node.nodeType === 1) {  
+                        let label = "";
+
+                        // Para doon sa label para maayos
+                        switch (node.nodeName.toUpperCase()) { 
+                            case "NAME":
+                                label = "Name";
+                                break;
+                            case "COURSE":
+                                label = "Course";
+                                break;
+                            case "YEARSECTION":
+                                label = "Year Level / Section";
+                                break;
+                            case "ADVISOR":
+                                label = "Advisor";
+                                break;
+                            case "SCHOOLYEAR":
+                                label = "School Year";
+                                break;
+                            case "PICTURE":
+                                imgSrc = node.textContent.trim();
+                                continue;
+                        }
+
+                        userInfo += `<div><span class="bold-text">${label}:</span> ${node.textContent}</div>`;
+                    }
+                }
+
+                if (imgSrc) {
+                    userInfo += `<img src="${imgSrc}" alt="User Picture" class="profile-pic">`;
+                }
+
+                userInfo += "</div>";  
+                output += userInfo;
+            }
+
+            output += "</div>";  
+            document.getElementById("libraryList").innerHTML = output;
+        });
+    </script>
+</head>
+
+<body>
+    <h1>College of CICT</h1>
+    <h2>Library Users</h2>
+    <div id="libraryList"></div>
+
+    <xml id="xmldata" style="display: none;">
+        <LibraryUsers>
+            <User>
+                <name>Brent Tepace</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Gabriella Micca Carillo</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Pinky Mae Romero</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Kathleen Magrata</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Judas De Sales</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Paul Anthony Valderama</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Ivan Alcantara</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+            <User>
+                <name>Ian Juan</name>
+                <course>BSIT</course>
+                <yearSection>3BG2</yearSection>
+                <advisor>Noemi Reyes</advisor>
+                <schoolyear>2024-2025</schoolyear>
+                <picture>https://ociacc.com/wp-content/uploads/2019/03/blank-profile-picture-973460_1280-1030x1030.png
+                </picture>
+            </User>
+        </LibraryUsers>
+    </xml>
+</body>
+
+</html>
